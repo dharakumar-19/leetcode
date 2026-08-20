@@ -1,24 +1,27 @@
 class Solution {
     public int romanToInt(String s) {
+
         int total = 0;
-        int prev = 0;
 
-        for (int i = s.length() - 1; i >= 0; i--) {
-            int curr = value(s.charAt(i));
+        for (int i = 0; i < s.length(); i++) {
 
-            if (curr < prev) {
-                total -= curr;
+            int current = value(s.charAt(i));
+
+            if (i + 1 < s.length() &&
+                current < value(s.charAt(i + 1))) {
+
+                total -= current;
+
             } else {
-                total += curr;
+                total += current;
             }
-
-            prev = curr;
         }
 
         return total;
     }
 
     public int value(char c) {
+
         switch (c) {
             case 'I': return 1;
             case 'V': return 5;
@@ -28,6 +31,7 @@ class Solution {
             case 'D': return 500;
             case 'M': return 1000;
         }
+
         return 0;
     }
 }
